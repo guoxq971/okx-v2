@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Environment variables (Sensitive Data)
+.env
+backend/.env
+frontend/.env
+
+# Build outputs
+dist/
+build/
+
+# IDE/Editor
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log
+
+# System
+.vercel/

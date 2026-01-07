@@ -1,0 +1,55 @@
+:root {
+  --bg-color: #1a1a1a;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --primary-color: #42b883; /* Vue Green */
+  --secondary-bg: #242424;
+  --border-color: #333;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ant Design Dark Override */
+.ant-table {
+  background: var(--secondary-bg) !important;
+  color: var(--text-color) !important;
+}
+
+.ant-table-thead > tr > th {
+  background: #1f1f1f !important;
+  color: var(--text-color) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.ant-table-tbody > tr > td {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.ant-table-tbody > tr.ant-table-row:hover > td {
+  background: #333 !important;
+}
+
+.ant-modal-content, .ant-modal-header {
+  background-color: var(--secondary-bg) !important;
+  color: var(--text-color) !important;
+}
+
+.ant-modal-title {
+  color: var(--text-color) !important;
+}
+
+.ant-card {
+  background-color: var(--secondary-bg) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-color) !important;
+}
+
+.ant-card-head {
+  color: var(--text-color) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
