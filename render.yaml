@@ -1,0 +1,33 @@
+services:
+  # 后端服务 (Python FastAPI)
+  - type: web
+    name: okx-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: OKX_API_KEY
+        sync: false # 部署时会提示您输入
+      - key: OKX_SECRET_KEY
+        sync: false
+      - key: OKX_PASSPHRASE
+        sync: false
+      - key: OKX_SIMULATED
+        value: "0"
+
+  # 前端服务 (Vue Static Site)
+  - type: static
+    name: okx-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    plan: free
+    envVars:
+      - key: VITE_API_BASE_URL
+        fromService:
+          type: web
+          name: okx-backend
+          property: url

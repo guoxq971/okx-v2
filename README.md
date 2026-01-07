@@ -14,41 +14,64 @@
 - Node.js (v16+)
 - Python (3.8+)
 
-## 安装与运行
+## 本地复原与启动指南 (如何从 GitHub 拉取代码并运行)
 
-### 1. 后端 (Backend)
-1. 进入 `backend` 目录。
+如果你在另一台电脑上克隆了本项目，请按照以下步骤复原环境：
+
+### 1. 克隆项目
+```bash
+git clone https://github.com/guoxq971/okx-v2.git
+cd okx-v2
+```
+
+### 2. 后端配置 (Backend)
+后端依赖 Python 环境和 API Key 配置。
+1. 进入后端目录:
+   ```bash
+   cd backend
+   ```
 2. 安装依赖:
    ```bash
    pip install -r requirements.txt
    ```
-3. **配置 API Key**:
-   - 编辑 `.env` 文件。
-   - 填入你的 OKX API Key, Secret, 和 Passphrase。
-   - 如果使用模拟盘，请设置 `OKX_SIMULATED=1`。
-   ```ini
-   OKX_API_KEY=你的APIKey
-   OKX_SECRET_KEY=你的SecretKey
-   OKX_PASSPHRASE=你的Passphrase
-   OKX_SIMULATED=0
-   ```
-4. 运行服务器:
+3. **关键步骤: 创建配置**
+   - 复制示例配置文件:
+     ```bash
+     cp .env.example .env
+     # 或者在 Windows 上手动复制并重命名
+     ```
+   - 打开 `.env` 文件，填入你的 OKX API Key:
+     ```ini
+     OKX_API_KEY=你的真实APIKey
+     OKX_SECRET_KEY=你的SecretKey
+     OKX_PASSPHRASE=你的密码
+     OKX_SIMULATED=0
+     ```
+4. 启动后端:
    ```bash
-   python main.py
+   uvicorn main:app --host 0.0.0.0 --port 8001 --reload
    ```
-   服务器运行在 `http://localhost:8000`。
 
-### 2. 前端 (Frontend)
-1. 进入 `frontend` 目录。
+### 3. 前端配置 (Frontend)
+前端依赖 Node.js 环境。
+1. 进入前端目录:
+   ```bash
+   cd ../frontend
+   ```
 2. 安装依赖:
    ```bash
    npm install
    ```
-3. 启动开发服务器:
+3. 启动前端:
    ```bash
    npm run dev
    ```
-   访问地址 `http://localhost:5173`。
+4. 打开浏览器访问: `http://localhost:5173`
+
+---
+
+## 部署 (Deploy)
+本项目支持一键部署到 Render。详情请查看仓库根目录下的 `render.yaml` 蓝图文件。
 
 ## 架构
 - **后端**: FastAPI 作为代理服务器，处理 OKX V5 API 请求签名和转发。
